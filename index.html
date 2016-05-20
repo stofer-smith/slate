@@ -110,8 +110,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='http://capturehighered.com'>Capture LLC</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -133,28 +132,29 @@
 <p>To authorize, use this code:</p>
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://[server_url]/v1/prospects"</span> -H <span class="s2">"Authorization: bearer placeholder"</span>
+curl <span class="s2">"https://[server_url]/v1/prospects"</span>
+    -H <span class="s2">"Authorization: bearer api_key.placeholder"</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">placeholder</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">api_key.placeholder</code> with your API key.</p>
 </blockquote>
 
 <p>Capture API uses API keys to allow access to the API. You can register a new Capture API API key at our <a href="http://example.com/developers">developer portal</a>.</p>
 
 <p>Capture API expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: bearer placeholder</code></p>
+<p><code class="prettyprint">Authorization: bearer api_key.placeholder</code></p>
 
 <aside class="notice">
-You must replace <code>placeholder</code> with your personal API key.
+You must replace <code>api_key.placeholder</code> with your personal API key.
 </aside>
 
 <h1 id="prospects">Prospects</h1>
 
 <h2 id="get-all-prospects">Get All Prospects</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
-  -H <span class="s2">"Authorization: bearer placeholder"</span>
+  -H <span class="s2">"Authorization: bearer api_key.placeholder"</span>
 </code></pre>
 
 <blockquote>
@@ -199,7 +199,7 @@ You must replace <code>placeholder</code> with your personal API key.
 
 <h2 id="get-a-specific-prospect">Get a Specific Prospect</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects/2"</span>
-  -H <span class="s2">"Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.ey..."</span>
+  -H <span class="s2">"Authorization: bearer api_key.placeholder"</span>
 </code></pre>
 
 <blockquote>
