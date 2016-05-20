@@ -234,7 +234,7 @@ You must replace <code>placeholder</code> with your personal API key.
 </tr>
 </tbody></table>
 
-<h1 id="errors">Errors</h1>
+          <h1 id="errors">Errors</h1>
 
 <p>Capture API uses conventional HTTP response codes to indicate the success or failure of an API request. In general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a charge failed, etc.), and codes in the 5xx range indicate an error with Capture&rsquo;s servers (these are rare).</p>
 
@@ -242,11 +242,7 @@ You must replace <code>placeholder</code> with your personal API key.
 
 <p>Our API libraries raise exceptions for many reasons, such as a failed charge, invalid parameters, authentication errors, and network unavailability. We recommend writing code that gracefully handles all possible API exceptions.</p>
 
-          <h1 id="errors">Errors</h1>
-
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>The Capture API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -263,16 +259,20 @@ You must replace <code>placeholder</code> with your personal API key.
 <td>Unauthorized &ndash; Your API key is wrong</td>
 </tr>
 <tr>
+<td>402</td>
+<td>Request Failed &ndash; The parameters were valid but the request failed.</td>
+</tr>
+<tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden &ndash; The prospect requested is hidden for administrators only</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found &ndash; The specified prospect could not be found</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed &ndash; You tried to access a prospect with an invalid method</td>
 </tr>
 <tr>
 <td>406</td>
@@ -280,11 +280,11 @@ You must replace <code>placeholder</code> with your personal API key.
 </tr>
 <tr>
 <td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>Gone &ndash; The prospect requested has been removed from our servers</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>409</td>
+<td>Conflict &ndash; The request conflicts with another request (perhaps due to using the same idempotent key).</td>
 </tr>
 <tr>
 <td>429</td>
@@ -296,7 +296,7 @@ You must replace <code>placeholder</code> with your personal API key.
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
 
