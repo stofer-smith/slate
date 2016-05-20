@@ -133,7 +133,7 @@
 <p>To authorize, use this code:</p>
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://[server_url]/auth/login"</span> -H <span class="s2">"email: ssmith@capturehighered.com password:password"</span>
+curl <span class="s2">"https://[server_url]/v1/prospects"</span> -H <span class="s2">"Authorization: bearer placeholder"</span>
 </code></pre>
 
 <blockquote>
@@ -144,17 +144,17 @@ curl <span class="s2">"https://[server_url]/auth/login"</span> -H <span class="s
 
 <p>Capture API expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">Authorization: bearer placeholder</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>placeholder</code> with your personal API key.
 </aside>
 
 <h1 id="prospects">Prospects</h1>
 
 <h2 id="get-all-prospects">Get All Prospects</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
-  -H <span class="s2">"Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.ey..."</span>
+  -H <span class="s2">"Authorization: bearer placeholder"</span>
 </code></pre>
 
 <blockquote>
