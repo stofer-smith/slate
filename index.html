@@ -165,7 +165,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 
 <h2 id="get-all-prospects">Get All Prospects</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
-  -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
+    -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
 </code></pre>
 
 <blockquote>
@@ -212,7 +212,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 
 <h2 id="get-a-specific-prospect">Get a Specific Prospect</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects/2"</span>
-  -H <span class="s2">"Authorization: bearer api_key.placeholder"</span>
+    -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
 </code></pre>
 
 <blockquote>
@@ -242,7 +242,164 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
+<td>prospect_id</td>
+<td>The ID of the prospect to retrieve</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-new-prospect">Create a New Prospect</h2>
+
+<blockquote>
+<p>In a single line, the curl command would be: a) If sending form data:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
+    -X POST
+    -H <span class="s2">"Content-Type: multipart/form-data;"</span>
+    -H <span class="s2">"Authorization: Bearer jwt.placeholder"</span>
+    -F <span class="s2">"key1=value1"</span> -F <span class="s2">"key2=value2"</span>
+</code></pre>
+
+<blockquote>
+<p>b) If sending raw data as json:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
+    -X POST
+    -H <span class="s2">"Content-Type: application/json"</span>
+    -d <span class="s1">'{"key1":"value1", "key2":"value2"}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns the new prospect with JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">301</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Prospect Name"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prospect@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://api.capturehighered.com/v1/prospects/[prospect_id]?key1=value1&amp;key2=value2</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>prospect_id</td>
+<td>The ID of the prospect to retrieve</td>
+</tr>
+<tr>
+<td>key1</td>
+<td>value1</td>
+</tr>
+<tr>
+<td>key2</td>
+<td>value2</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-specific-prospect">Update a Specific Prospect</h2>
+
+<blockquote>
+<p>In a single line, the curl command would be: a) If sending form data:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects/[prospect_id]"</span>
+    -X PUT
+    -H <span class="s2">"Content-Type: multipart/form-data;"</span>
+    -H <span class="s2">"Authorization: Bearer jwt.placeholder"</span>
+    -F <span class="s2">"key1=value1"</span>
+    -F <span class="s2">"key2=value2"</span>
+</code></pre>
+
+<blockquote>
+<p>b) If sending raw data as json:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects/[prospect_id]"</span>
+    -X PUT
+    -H <span class="s2">"Content-Type: application/json"</span>
+    -d <span class="s1">'{"key1":"value1", "key2":"value2"}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns the updated prospect with JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="err">prospect_id</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Prospect Name"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prospect@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://api.capturehighered.com/v1/prospects/[prospect_id]?key1=value1&amp;key2=value2</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>prospect_id</td>
+<td>The ID of the prospect to retrieve</td>
+</tr>
+<tr>
+<td>key1</td>
+<td>value1</td>
+</tr>
+<tr>
+<td>key2</td>
+<td>value2</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-a-specific-prospect">Delete a Specific Prospect</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects/2"</span>
+    -X DELETE
+    -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Prospect Name"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prospect@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves a specific prospect.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.capturehighered.com/v1/prospects/[prospect_id]</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>prospect_id</td>
 <td>The ID of the prospect to retrieve</td>
 </tr>
 </tbody></table>
