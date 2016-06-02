@@ -124,37 +124,48 @@
 
 <h1 id="authentication">Authentication</h1>
 
-<p>Authenticate your account when using the API by including your secret API key in the request. You can receive your API key by POSTing your username and password to https://[server_url]/auth/login. Your API keys carry many privileges, so be sure to keep them secret! Do not share your secret API keys in publicly accessible areas such GitHub, client-side code, and so forth.</p>
+<p>Authenticate your account when using the API by including your secret API key in the request. You will receive your API key from us. Your client application will then submit it to https://[server_url]/authenticate and receive back a JSON Web Token(JWT)<aside class="notice">
+Found here: https://jwt.io/</aside>. Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret API keys or JWT in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your JWT, because the client will get it from the authentication page and use it when calling protected end points.</p>
 
 <p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.</p>
 
 <blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://[server_url]/v1/prospects"</span>
-    -H <span class="s2">"Authorization: bearer api_key.placeholder"</span>
-</code></pre>
+<p>To authorize, use this code:
+&ldquo;`shell</p>
 
-<blockquote>
+<h1 id="with-shell-you-can-just-pass-the-correct-header-with-each-request">With shell, you can just pass the correct header with each request</h1>
+
+<p>curl &quot;https://[server_url]/v1/authenticate&rdquo;
+    -H &ldquo;api_key: api_key.placeholder&rdquo;
+&ldquo;`</p>
+
+<p>Example call after receiving your JWT
+&rdquo;`shell</p>
+
+<h1 id="with-shell-you-can-just-pass-the-correct-header-with-each-request">With shell, you can just pass the correct header with each request</h1>
+
+<p>curl &ldquo;https://[server_url]/v1/prospects&rdquo;
+    -H &ldquo;Authorization: bearer jwt.placeholder&rdquo;
+&ldquo;`</p>
+
 <p>Make sure to replace <code class="prettyprint">api_key.placeholder</code> with your API key.</p>
 </blockquote>
 
-<p>Capture API uses API keys to allow access to the API. You can register a new Capture API API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>Capture API uses API keys to authenticate to the API. You can register a new Capture API API key at our <a href="http://example.com/developers">developer portal</a>.</p>
 
-<p>Capture API expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>Capture API expects for the JWT to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: bearer api_key.placeholder</code></p>
+<p><code class="prettyprint">Authorization: bearer jwt.placeholder</code></p>
 
 <aside class="notice">
-You must replace <code>api_key.placeholder</code> with your personal API key.
+You must replace <code>jwt.placeholder</code> with your personal API key. However, this will mainly be handled by the API client code.
 </aside>
 
 <h1 id="prospects">Prospects</h1>
 
 <h2 id="get-all-prospects">Get All Prospects</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
-  -H <span class="s2">"Authorization: bearer api_key.placeholder"</span>
+  -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
 </code></pre>
 
 <blockquote>
@@ -169,6 +180,8 @@ You must replace <code>api_key.placeholder</code> with your personal API key.
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
+
+<p>The auto-pagination feature is specific to Capture&rsquo;s libraries and cannot be used directly with curl.</p>
 
 <p>This endpoint retrieves all prospects.</p>
 
@@ -218,7 +231,7 @@ You must replace <code>api_key.placeholder</code> with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.capturehighered.com/v1/prospects/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">GET https://api.capturehighered.com/v1/prospects/[prospect_id]</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
