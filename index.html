@@ -124,8 +124,11 @@
 
 <h1 id="authentication">Authentication</h1>
 
-<p>Authenticate your account when using the API by including your secret API key in the request. You will receive your API key from us. Your client application will then submit it to https://[server_url]/authenticate and receive back a JSON Web Token(JWT)<aside class="notice">
-Found here: https://jwt.io/</aside>. Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret API keys or JWT in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your JWT, because the client will get it from the authentication page and use it when calling protected end points.</p>
+<p>Authenticate your account when using the API by including your secret API key in the request. You will receive your API key from us. Your client application will then submit it to https://[server_url]/authenticate and receive back a JSON Web Token(JWT). Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret API keys or JWT in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your JWT, because the client will get it from the authentication page and use it when calling protected end points.</p>
+
+<aside class="notice">
+Details on JSON Web Tokens can be found here: https://jwt.io/
+</aside>
 
 <p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.</p>
 
