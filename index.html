@@ -159,6 +159,8 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <h1 id="prospects">Prospects</h1>
 
 <h2 id="get-all-prospects">Get All Prospects</h2>
+
+<p>Default returns only the Prospect IDs for all prospects, or a subgroup of prospects.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
     -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
 </code></pre>
@@ -198,7 +200,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <tr>
 <td>include_prospects</td>
 <td>false</td>
-<td>If set to true, the result will also include prospects.</td>
+<td>If set to true, the result will also include prospect information.</td>
 </tr>
 <tr>
 <td>available</td>
