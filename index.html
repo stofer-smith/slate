@@ -133,24 +133,22 @@ Details on JSON Web Tokens can be found here: https://jwt.io/
 <p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.</p>
 
 <blockquote>
-<p>To authorize, use this code:
-&ldquo;`shell</p>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://[server_url]/v1/authenticate"</span>
+    -H <span class="s2">"api_key: api_key.placeholder"</span>
+</code></pre>
 
-<h1 id="with-shell-you-can-just-pass-the-correct-header-with-each-request">With shell, you can just pass the correct header with each request</h1>
+<blockquote>
+<p>Example call after receiving your JWT</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://[server_url]/v1/prospects"</span>
+    -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
+</code></pre>
 
-<p>curl &quot;https://[server_url]/v1/authenticate&rdquo;
-    -H &ldquo;api_key: api_key.placeholder&rdquo;
-&ldquo;`</p>
-
-<p>Example call after receiving your JWT
-&rdquo;`shell</p>
-
-<h1 id="with-shell-you-can-just-pass-the-correct-header-with-each-request">With shell, you can just pass the correct header with each request</h1>
-
-<p>curl &ldquo;https://[server_url]/v1/prospects&rdquo;
-    -H &ldquo;Authorization: bearer jwt.placeholder&rdquo;
-&ldquo;`</p>
-
+<blockquote>
 <p>Make sure to replace <code class="prettyprint">api_key.placeholder</code> with your API key.</p>
 </blockquote>
 
