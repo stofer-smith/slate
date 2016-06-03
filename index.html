@@ -124,7 +124,7 @@
 
 <h1 id="authentication">Authentication</h1>
 
-<p>Authenticate your account when using the API by including your secret API key in the request. You will receive your API key from us. Your client application will then submit it to https://[server_url]/authenticate and receive back a JSON Web Token(JWT). Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret API keys or JWT in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your JWT, because the client will get it from the authentication page and use it when calling protected end points.</p>
+<p>Authenticate your account when using the API by including your secret API key in the request. You will receive your API key from us. Your client application will then submit it to https://api.capturehighered.com/authenticate and receive back a JSON Web Token(JWT). Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret API keys or JWT in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your JWT, because the client will get it from the authentication page and use it when calling protected end points.</p>
 
 <aside class="notice">
 Details on JSON Web Tokens can be found here: https://jwt.io/
@@ -153,8 +153,6 @@ Details on JSON Web Tokens can be found here: https://jwt.io/
 
 <p>Make sure to replace <code class="prettyprint">api_key.placeholder</code> with your API key.</p>
 </blockquote>
-
-<p>Capture API uses API keys to authenticate to the API. You can register a new Capture API API key at our <a href="http://example.com/developers">developer portal</a>.</p>
 
 <p>Capture API expects for the JWT to be included in all API requests to the server in a header that looks like the following:</p>
 
