@@ -133,14 +133,14 @@
 <p>To authorize, use this code:</p>
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With the shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://[server_url]/v1/authenticate"</span>
+curl <span class="s2">"https://api.capturehighered.com/v1/authenticate"</span>
     -H <span class="s2">"api_key: api_key.placeholder"</span>
 </code></pre>
 
 <blockquote>
 <p>Example call after receiving your JWT</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"https://[server_url]/v1/prospects"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
     -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
 </code></pre>
 
@@ -486,6 +486,17 @@ Unlike other objects, deleted prospects can still be retrieved through the API, 
 <td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
+
+<p>ATTRIBUTES |
+ type | The type of error returned. Can be: api_connection_error, api_error, authentication_error, card_error, invalid_request_error, or rate_limit_error.
+ message
+ optional | A human-readable message providing more details about the error. For card errors, these messages can be shown to your users.
+ code
+optional |
+For card errors, a short string from amongst those listed on the right describing the kind of card error that occurred.
+ param
+optional |
+The parameter the error relates to if the error is parameter-specific. You can use this to display a message near the correct form field, for example.</p>
 
       </div>
       <div class="dark-box">
