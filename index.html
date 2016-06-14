@@ -406,26 +406,34 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 
 <h2 id="create-a-new-prospect">Create a New Prospect</h2>
 
-<p>Creates a new prospect object.</p>
-
-<blockquote>
-<p>In a single line, the curl command would be: a) If sending form data:</p>
-</blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
+<p>Creates a new prospect object.
+<code class="prettyprint">shell
+In a single line, the curl command would be: a) If sending form data:
+curl &quot;https://api.capturehighered.net/v1/prospects&quot;
     -X POST
-    -H <span class="s2">"Content-Type: multipart/form-data;"</span>
-    -H <span class="s2">"Authorization: Bearer jwt.placeholder"</span>
-    -F <span class="s2">"key1=value1"</span> -F <span class="s2">"key2=value2"</span>
-</code></pre>
-
-<blockquote>
-<p>b) If sending raw data as json:</p>
-</blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
+    -H &quot;Content-Type: multipart/form-data;&quot;
+    -H &quot;Authorization: Bearer jwt.placeholder&quot;
+    -F &quot;key1=value1&quot; -F &quot;key2=value2&quot;
+</code>
+<code class="prettyprint">shell
+b) If sending raw data as json:
+curl &quot;https://api.capturehighered.net/v1/prospects&quot;
     -X POST
-    -H <span class="s2">"Content-Type: application/json"</span>
-    -d <span class="s1">'{"key1":"value1", "key2":"value2"}'</span>
-</code></pre>
+    -H &quot;Content-Type: application/json&quot;
+    -d &#39;{&quot;key1&quot;:&quot;value1&quot;, &quot;key2&quot;:&quot;value2&quot;}&#39;
+</code>
+<code class="prettyprint">php
+&lt;?php
+$client = new Capture\API\Client($jwt.placeholder);
+$client-&gt;authorize();
+$prospects = $client-&gt;createProspects([&#39;first_name&#39;=&gt;&quot;Jack&quot;,&quot;last_name&quot;=&gt;&quot;Smith&quot;,...]);
+</code>
+&ldquo;`ruby
+require &lsquo;capture-api&rsquo;</p>
+
+<p>api = Capture::APIClient.authorize!(&#39;jwt.placeholder&rsquo;)
+api.prospects.create([&#39;first_name&rsquo;=&gt;&quot;Jack&rdquo;,&ldquo;last_name&rdquo;=&gt;&ldquo;Smith&rdquo;,&hellip;])
+&ldquo;`</p>
 
 <blockquote>
 <p>The above command returns the new prospect with JSON structured like this:</p>
