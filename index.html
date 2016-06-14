@@ -199,10 +199,12 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 </aside>
 
 <h1 id="prospects">Prospects</h1>
-
-<h2 id="get-all-prospects">Get All Prospects</h2>
-
-<p>Default returns only the Prospect IDs for all prospects, or a subgroup of prospects.</p>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.capture-api.1+json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.capturehighered.net</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">JWT "jwt.placeholder"</span>
+</code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
     -H <span class="s2">"Authorization: JWT jwt.placeholder"</span>
 </code></pre>
@@ -357,6 +359,10 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<h2 id="get-all-prospects">Get All Prospects</h2>
+
+<p>Default returns only the Prospect IDs for all prospects, or a subgroup of prospects.</p>
 
 <h3 id="returns">returns</h3>
 
