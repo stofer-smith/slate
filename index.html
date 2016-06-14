@@ -199,6 +199,12 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 </aside>
 
 <h1 id="prospects">Prospects</h1>
+
+<h2 id="get-all-prospects">Get All Prospects</h2>
+
+<p>Default returns only the Prospect IDs for all prospects, or a subgroup of prospects.</p>
+
+<p>The auto-pagination feature is specific to Capture&rsquo;s libraries and cannot be used directly with curl.</p>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.capture-api.1+json</span>
@@ -274,8 +280,6 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>The auto-pagination feature is specific to Capture&rsquo;s libraries and cannot be used directly with curl.</p>
-
 <h3 id="returns">Returns</h3>
 
 <p>This endpoint retrieves all prospects.</p>
@@ -295,8 +299,8 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 </thead><tbody>
 <tr>
 <td>include_prospects</td>
-<td>false</td>
-<td>If set to true, the result will also include prospect information.</td>
+<td>true</td>
+<td>If set to false, the result will not include prospect information.</td>
 </tr>
 <tr>
 <td>available</td>
@@ -359,10 +363,6 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
-<h2 id="get-all-prospects">Get All Prospects</h2>
-
-<p>Default returns only the Prospect IDs for all prospects, or a subgroup of prospects.</p>
 
 <h3 id="returns">returns</h3>
 
