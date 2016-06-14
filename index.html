@@ -91,7 +91,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;https&quot;,&quot;shell&quot;,&quot;php&quot;,&quot;ruby&quot;]">
+  <body class="index" data-languages="[&quot;http&quot;,&quot;shell&quot;,&quot;php&quot;,&quot;ruby&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -101,7 +101,7 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="https">HTTPS</a>
+              <a href="#" data-language-name="http">HTTPS</a>
               <a href="#" data-language-name="shell">cURL</a>
               <a href="#" data-language-name="php">PHP</a>
               <a href="#" data-language-name="ruby">Ruby</a>
@@ -127,10 +127,10 @@
 </blockquote>
 <pre class="highlight plaintext"><code>https://api.capturehighered.net
 </code></pre>
-<pre class="highlight plaintext"><code>GET / HTTP/1.1
-User-Agent: MyClient/1.0.0
-Accept: application/vnd.capturehighered.1+json
-Host: api.capturehighered.net
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.capturehighered.1+json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.capturehighered.net</span>
 </code></pre>
 
 <p>The Capture Prospect API is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support cross-origin resource sharing, allowing you to interact securely with our API from a client-side web application (though you should never expose your secret API key in any public website&rsquo;s client-side code).</p>
@@ -634,7 +634,7 @@ The parameter the error relates to if the error is parameter-specific. You can u
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="https">HTTPS</a>
+                <a href="#" data-language-name="http">HTTPS</a>
                 <a href="#" data-language-name="shell">cURL</a>
                 <a href="#" data-language-name="php">PHP</a>
                 <a href="#" data-language-name="ruby">Ruby</a>
