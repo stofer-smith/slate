@@ -143,7 +143,16 @@
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With the shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://api.capturehighered.com/v1/authenticate"</span>
-    -H <span class="s2">"api_key: api_key.placeholder"</span>
+    -X POST
+    -H <span class="s2">"Cache-Control: no-cache"</span>
+    -d <span class="s1">'email=example@email.com&amp;password=example_pw'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$jwt</span><span class="o">.</span><span class="nx">placeholder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Authenticate</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span><span class="nv">$password</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'capture-api'</span>
+
+<span class="n">jwt</span><span class="p">.</span><span class="nf">placeholder</span> <span class="o">=</span> <span class="no">Capture</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authenticate!</span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -151,6 +160,17 @@ curl <span class="s2">"https://api.capturehighered.com/v1/authenticate"</span>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
     -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">(</span><span class="nv">$jwt</span><span class="o">.</span><span class="nx">placeholder</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">authorize</span><span class="p">();</span>
+<span class="nv">$prospects</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getProspects</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'capture-api'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Capture</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'jwt.placeholder'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">prospects</span><span class="p">.</span><span class="nf">get</span>
 </code></pre>
 
 <blockquote>
