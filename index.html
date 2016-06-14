@@ -172,11 +172,16 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
     -H <span class="s2">"Authorization: JWT jwt.placeholder"</span>
 </code></pre>
-<pre class="highlight php"><code>    <span class="cp">&lt;?php</span>
-    <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">(</span><span class="nv">$apiKey</span><span class="p">);</span>
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">authorize</span><span class="p">();</span>
-    <span class="nv">$prospects</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getProspects</span><span class="p">();</span>
-    <span class="cp">?&gt;</span>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">(</span><span class="nv">$jwt</span><span class="o">.</span><span class="nx">placeholder</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">authorize</span><span class="p">();</span>
+<span class="nv">$prospects</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getProspects</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'capture-api'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Capture</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'jwt.placeholder'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">prospects</span><span class="p">.</span><span class="nf">get</span>
 </code></pre>
 
 <blockquote>
