@@ -406,34 +406,30 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 
 <h2 id="create-a-new-prospect">Create a New Prospect</h2>
 
-<p>Creates a new prospect object.
-<code class="prettyprint">shell
-In a single line, the curl command would be: a) If sending form data:
-curl &quot;https://api.capturehighered.net/v1/prospects&quot;
+<p>Creates a new prospect object.</p>
+<pre class="highlight shell"><code>In a single line, the curl <span class="nb">command </span>would be: a<span class="o">)</span> If sending form data:
+curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
     -X POST
-    -H &quot;Content-Type: multipart/form-data;&quot;
-    -H &quot;Authorization: Bearer jwt.placeholder&quot;
-    -F &quot;key1=value1&quot; -F &quot;key2=value2&quot;
-</code>
-<code class="prettyprint">shell
-b) If sending raw data as json:
-curl &quot;https://api.capturehighered.net/v1/prospects&quot;
+    -H <span class="s2">"Content-Type: multipart/form-data;"</span>
+    -H <span class="s2">"Authorization: Bearer jwt.placeholder"</span>
+    -F <span class="s2">"key1=value1"</span> -F <span class="s2">"key2=value2"</span>
+</code></pre>
+<pre class="highlight shell"><code>b<span class="o">)</span> If sending raw data as json:
+curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
     -X POST
-    -H &quot;Content-Type: application/json&quot;
-    -d &#39;{&quot;key1&quot;:&quot;value1&quot;, &quot;key2&quot;:&quot;value2&quot;}&#39;
-</code>
-<code class="prettyprint">php
-&lt;?php
-$client = new Capture\API\Client($jwt.placeholder);
-$client-&gt;authorize();
-$prospects = $client-&gt;createProspects([&#39;first_name&#39;=&gt;&quot;Jack&quot;,&quot;last_name&quot;=&gt;&quot;Smith&quot;,...]);
-</code>
-&ldquo;`ruby
-require &lsquo;capture-api&rsquo;</p>
+    -H <span class="s2">"Content-Type: application/json"</span>
+    -d <span class="s1">'{"key1":"value1", "key2":"value2"}'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">(</span><span class="nv">$jwt</span><span class="o">.</span><span class="nx">placeholder</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">authorize</span><span class="p">();</span>
+<span class="nv">$prospects</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">createProspects</span><span class="p">([</span><span class="s1">'first_name'</span><span class="o">=&gt;</span><span class="s2">"Jack"</span><span class="p">,</span><span class="s2">"last_name"</span><span class="o">=&gt;</span><span class="s2">"Smith"</span><span class="p">,</span><span class="o">...</span><span class="p">]);</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'capture-api'</span>
 
-<p>api = Capture::APIClient.authorize!(&#39;jwt.placeholder&rsquo;)
-api.prospects.create([&#39;first_name&rsquo;=&gt;&quot;Jack&rdquo;,&ldquo;last_name&rdquo;=&gt;&ldquo;Smith&rdquo;,&hellip;])
-&ldquo;`</p>
+<span class="n">api</span> <span class="o">=</span> <span class="no">Capture</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'jwt.placeholder'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">prospects</span><span class="p">.</span><span class="nf">create</span><span class="p">([</span><span class="s1">'first_name'</span><span class="o">=&gt;</span><span class="s2">"Jack"</span><span class="p">,</span><span class="s2">"last_name"</span><span class="o">=&gt;</span><span class="s2">"Smith"</span><span class="p">,.</span><span class="nf">.</span><span class="o">.</span><span class="p">])</span>
+</code></pre>
 
 <blockquote>
 <p>The above command returns the new prospect with JSON structured like this:</p>
