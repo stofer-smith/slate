@@ -132,6 +132,23 @@
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.capturehighered.1+json</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.capturehighered.net</span>
 </code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/"</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="c1"># talk to api.capturehighered.net via client object
+</span><span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'capture-api'</span>
+
+<span class="c1"># talk to api.capturehighered.net via client object</span>
+<span class="n">client</span> <span class="o">=</span> <span class="no">Capture</span><span class="o">::</span><span class="no">Client</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">repository</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">repo</span><span class="p">(</span><span class="s1">'capture-api/capture.rb'</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"hello"</span><span class="p">:</span><span class="w"> </span><span class="s2">"world"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <p>The Capture Prospect API is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support cross-origin resource sharing, allowing you to interact securely with our API from a client-side web application (though you should never expose your secret API key in any public website&rsquo;s client-side code).</p>
 
@@ -154,7 +171,7 @@ curl <span class="s2">"https://api.capturehighered.com/v1/authenticate"</span>
 <blockquote>
 <p>Example call after receiving your JWT</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
     -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
 </code></pre>
 
@@ -175,7 +192,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <h2 id="get-all-prospects">Get All Prospects</h2>
 
 <p>Default returns only the Prospect IDs for all prospects, or a subgroup of prospects.</p>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
     -H <span class="s2">"Authorization: JWT jwt.placeholder"</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
@@ -253,7 +270,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://api.capturehighered.com/v1/prospects</code></p>
+<p><code class="prettyprint">GET http://api.capturehighered.net/v1/prospects</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -279,7 +296,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <h2 id="get-a-specific-prospect">Get a Specific Prospect</h2>
 
 <p>Retrieves the details of an existing prospect. You need only supply the unique prospect identifier that was returned upon prospect creation.</p>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects/321"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects/321"</span>
     -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
 </code></pre>
 
@@ -337,7 +354,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.capturehighered.com/v1/prospects/[prospect_id]</code></p>
+<p><code class="prettyprint">GET https://api.capturehighered.net/v1/prospects/[prospect_id]</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -360,7 +377,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <blockquote>
 <p>In a single line, the curl command would be: a) If sending form data:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
     -X POST
     -H <span class="s2">"Content-Type: multipart/form-data;"</span>
     -H <span class="s2">"Authorization: Bearer jwt.placeholder"</span>
@@ -370,7 +387,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <blockquote>
 <p>b) If sending raw data as json:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
     -X POST
     -H <span class="s2">"Content-Type: application/json"</span>
     -d <span class="s1">'{"key1":"value1", "key2":"value2"}'</span>
@@ -408,7 +425,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">PUT https://api.capturehighered.com/v1/prospects/[prospect_id]?key1=value1&amp;key2=value2</code></p>
+<p><code class="prettyprint">PUT https://api.capturehighered.net/v1/prospects/[prospect_id]?key1=value1&amp;key2=value2</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -439,7 +456,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <blockquote>
 <p>In a single line, the curl command would be: a) If sending form data:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects/[prospect_id]"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects/[prospect_id]"</span>
     -X PUT
     -H <span class="s2">"Content-Type: multipart/form-data;"</span>
     -H <span class="s2">"Authorization: Bearer jwt.placeholder"</span>
@@ -450,7 +467,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <blockquote>
 <p>b) If sending raw data as json:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects/[prospect_id]"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects/[prospect_id]"</span>
     -X PUT
     -H <span class="s2">"Content-Type: application/json"</span>
     -d <span class="s1">'{"description":"description change", "address_line1":"124 State St."}'</span>
@@ -488,7 +505,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">PUT https://api.capturehighered.com/v1/prospects/[prospect_id]?key1=value1&amp;key2=value2</code></p>
+<p><code class="prettyprint">PUT https://api.capturehighered.net/v1/prospects/[prospect_id]?key1=value1&amp;key2=value2</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -515,7 +532,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <h2 id="delete-a-specific-prospect">Delete a Specific Prospect</h2>
 
 <p>Permanently deletes a prospect.</p>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.com/v1/prospects/31221"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects/31221"</span>
     -X DELETE
     -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
 </code></pre>
@@ -536,7 +553,7 @@ Unlike other objects, deleted prospects can still be retrieved through the API, 
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.capturehighered.com/v1/prospects/[prospect_id]</code></p>
+<p><code class="prettyprint">GET https://api.capturehighered.net/v1/prospects/[prospect_id]</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
