@@ -312,8 +312,26 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <h2 id="get-a-specific-prospect">Get a Specific Prospect</h2>
 
 <p>Retrieves the details of an existing prospect. You need only supply the unique prospect identifier that was returned upon prospect creation.</p>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.capture-api.1+json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.capturehighered.net</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">JWT "jwt.placeholder"</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">30</span>
+<span class="s">id=321</span>
+</code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects/321"</span>
     -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">(</span><span class="nv">$jwt</span><span class="o">.</span><span class="nx">placeholder</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">authorize</span><span class="p">();</span>
+<span class="nv">$prospects</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getProspects</span><span class="p">(</span><span class="mi">321</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'capture-api'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Capture</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'jwt.placeholder'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">prospects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">321</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
