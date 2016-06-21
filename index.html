@@ -128,6 +128,110 @@
 </blockquote>
 <pre class="highlight plaintext"><code>https://api.capturehighered.net
 </code></pre>
+<pre class="highlight plaintext"><code>Creating a prospect with the PHP Library
+&lt;?php
+$client = new Capture\API\Client($jwt.placeholder);
+$client-&gt;authorize();
+$prospects = $client-&gt;createProspects(['first_name'=&gt;"Jack",'last_name'=&gt;"Smith",'email'=&gt;"j.smith@example.com"]);
+</code></pre>
+<pre class="highlight plaintext"><code>Then sending an Update with raw data as json:
+curl "https://api.capturehighered.net/v1/prospects"
+    -X POST
+    -H "Content-Type: application/json"
+    -d '{'first_name':"Jack",'last_name':"Smith",'email':"j.smith@example.com"}'
+</code></pre>
+<pre class="highlight plaintext"><code>The Update and Create endpoints will both return this JSON except for the result and message will vary accordingly.
+{
+  "object": "prospect",
+  "url": "/v1/prospects/:id",
+  "result": "prospect updated",
+  "message": "(Rows matched: 1  Changed: 1  Warnings: 0",
+  "data": [
+    {
+      "id": 11,
+      "pool_id": null,
+      "campaign_id": null,
+      "campaign_list_id": null,
+      "source_id": 0,
+      "client_prospect_id": null,
+      "prospect_status_id": 1,
+      "prospect_disposition_id": null,
+      "first_name": "Tester6",
+      "last_name": "Test",
+      "mi": null,
+      "email": "bad_email@example.com",
+      "home_phone": null,
+      "cell_phone": null,
+      "can_text": 0,
+      "address_1": "124 State St.",
+      "address_2": null,
+      "city": null,
+      "state": null,
+      "zip": null,
+      "addr_verified": 0,
+      "lob_addr_id": null,
+      "gender": null,
+      "dob": null,
+      "info_high_school_id": null,
+      "ethnicity_id": null,
+      "cluster_id": 0,
+      "upload_id": 0,
+      "update_id": 0,
+      "url": "",
+      "passcode": "",
+      "parent_passcode": "",
+      "distance": null,
+      "source_interest_id": null,
+      "capture_interest_id": null,
+      "major_1": null,
+      "major_2": null,
+      "major_3": null,
+      "grad_year": null,
+      "gpa": null,
+      "sat_score": null,
+      "act_score": null,
+      "score_floor": null,
+      "score_ceiling": null,
+      "grade_floor": null,
+      "grade_ceiling": null,
+      "matrix_cell_id": 0,
+      "matrix_cell_code": "",
+      "award": null,
+      "award_type": "",
+      "order_no": null,
+      "country": null,
+      "first_gen": null,
+      "mobility": null,
+      "mobility_perc": null,
+      "inst_type": null,
+      "inst_type_perc": null,
+      "selectivity": null,
+      "selectivity_perc": null,
+      "inst_size": null,
+      "inst_size_perc": null,
+      "custom_fields": null,
+      "parent_email": null,
+      "parent_last_name": null,
+      "parent_first_name": null,
+      "created_at": "0000-00-00 00:00:00",
+      "updated_at": "0000-00-00 00:00:00",
+      "deleted_at": null,
+      "nfa": 0,
+      "retargeted": 0,
+      "withdrawn": 0,
+      "cancelled": 0,
+      "wl_admit": 0,
+      "status_updated": "0000-00-00",
+      "from_form": 0,
+      "client_prospect": 0,
+      "tracking_identifier": null,
+      "emails_sent": 0,
+      "emails_opened": 0,
+      "emails_clicked": 0
+    }
+  ]
+}
+</code></pre>
 
 <p>The Capture Prospect API is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support cross-origin resource sharing, allowing you to interact securely with our API from a client-side web application (though you should never expose your secret API key in any public website&rsquo;s client-side code).</p>
 
