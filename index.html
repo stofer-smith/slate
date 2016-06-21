@@ -129,11 +129,14 @@
 <pre class="highlight plaintext"><code>https://api.capturehighered.net
 </code></pre>
 <pre class="highlight http"><code><span class="err">Creating a prospect with the HTTP Library
-curl "https://api.capturehighered.net/v1/prospects"
-    -X POST
-    -H "Content-Type: application/json"
-    -d '{'first_name':"Jack",'last_name':"Smith",'email':"j.smith@example.com"}'
-</span></code></pre>
+</span><span class="nf">POST</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.capture-api.1+json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.capturehighered.net</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">JWT "jwt.placeholder"</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">30</span>
+<span class="s">first_name=Jack&amp;last_name=Smith&amp;email=j.smith@example.com&amp;...</span>
+</code></pre>
 <pre class="highlight http"><code><span class="err">Then sending an Update with raw data as json:
 </span><span class="nf">POST</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
