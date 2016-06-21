@@ -140,9 +140,24 @@
 <span class="na">Content-Length</span><span class="p">:</span> <span class="s">30</span>
 <span class="s">first_name=Jack&amp;last_name=Smith&amp;email=j.smith@example.com&amp;...</span>
 </code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
+    -X POST
+    -H <span class="s2">"Content-Type: application/json"</span>
+    -d <span class="s1">'{'</span>first_name<span class="s1">':"Jack",'</span>last_name<span class="s1">':"Smith",'</span>email<span class="s1">':"j.smith@example.com"}'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">(</span><span class="nv">$jwt</span><span class="o">.</span><span class="nx">placeholder</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">authorize</span><span class="p">();</span>
+<span class="nv">$prospects</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">createProspects</span><span class="p">([</span><span class="s1">'first_name'</span><span class="o">=&gt;</span><span class="s2">"Jack"</span><span class="p">,</span><span class="s1">'last_name'</span><span class="o">=&gt;</span><span class="s2">"Smith"</span><span class="p">,</span><span class="s1">'email'</span><span class="o">=&gt;</span><span class="s2">"j.smith@example.com"</span><span class="p">]);</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'capture-api'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Capture</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'jwt.placeholder'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">prospects</span><span class="p">.</span><span class="nf">create</span><span class="p">([</span><span class="s1">'first_name'</span><span class="o">=&gt;</span><span class="s2">"Jack"</span><span class="p">,</span><span class="s1">'last_name'</span><span class="o">=&gt;</span><span class="s2">"Smith"</span><span class="p">,</span><span class="s1">'email'</span><span class="o">=&gt;</span><span class="s2">"j.smith@example.com"</span><span class="p">])</span>
+</code></pre>
 
 <blockquote>
-<p>Then sending an Update with raw data as json&hellip;</p>
+<p>Then sending an Update with raw data as JSON&hellip;</p>
 </blockquote>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
@@ -150,12 +165,28 @@
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.capturehighered.net</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">JWT "jwt.placeholder"</span>
 <span class="na">Content-Length</span><span class="p">:</span> <span class="s">30</span>
-<span class="s">id=[prospect_id]&amp;address_1=124+State+St.&amp;...</span>
+<span class="s">id=321&amp;address_1=124+State+St.&amp;...</span>
+</code></pre>
+<pre class="highlight shell"><code>b<span class="o">)</span> If sending raw data as json:
+curl <span class="s2">"https://api.capturehighered.net/v1/prospects/321"</span>
+    -X PUT
+    -H <span class="s2">"Content-Type: application/json"</span>
+    -d <span class="s1">'{"address_1":"124 State St.",...}'</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">(</span><span class="nv">$jwt</span><span class="o">.</span><span class="nx">placeholder</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">authorize</span><span class="p">();</span>
+<span class="nv">$prospects</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">updateProspects</span><span class="p">(</span><span class="mi">321</span><span class="p">,</span> <span class="p">[</span><span class="s1">'address_1'</span><span class="o">=&gt;</span><span class="s2">"124 State St."</span><span class="p">,</span><span class="o">...</span><span class="p">]);</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'capture-api'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Capture</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'jwt.placeholder'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">prospects</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="mi">321</span><span class="p">,</span> <span class="p">[</span><span class="s1">'address_1'</span><span class="o">=&gt;</span><span class="s2">"124 State St."</span><span class="p">,.</span><span class="nf">.</span><span class="o">.</span><span class="p">])</span>
 </code></pre>
 
 <blockquote>
-<p>The Update and Create endpoints will both return this JSON,
-except for the result and message will vary accordingly.</p>
+<p>The Update and Create endpoints will both return JSON similar to the following,
+with the exception that the url, result, and message will vary accordingly.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prospect"</span><span class="p">,</span><span class="w">
@@ -164,7 +195,7 @@ except for the result and message will vary accordingly.</p>
   </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(Rows matched: 1  Changed: 1  Warnings: 0"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">321</span><span class="p">,</span><span class="w">
       </span><span class="nt">"pool_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"campaign_list_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -172,10 +203,14 @@ except for the result and message will vary accordingly.</p>
       </span><span class="nt">"client_prospect_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"prospect_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nt">"prospect_disposition_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tester6"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"mi"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bad_email@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"j.smith@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"home_phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"cell_phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"can_text"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124 State St."</span><span class="p">,</span><span class="w">
       </span><span class="err">...</span><span class="w">
     </span><span class="err">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
