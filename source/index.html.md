@@ -19,11 +19,24 @@ search: true
 ---
 
 # Introduction
+> ###API Endpoint --- https://api.capturehighered.net
 
-> API Endpoint
+> Creating a prospect with the HTTP Library...
 
+```http
+POST /prospects HTTP/1.1
+User-Agent: MyClient/1.0.0
+Accept: application/vnd.capture-api.1+json
+Host: api.capturehighered.net
+Authorization: JWT "jwt.placeholder"
+Content-Length: 30
+first_name=Jack&last_name=Smith&email=j.smith@example.com&...
 ```
-https://api.capturehighered.net
+```shell
+curl "https://api.capturehighered.net/v1/prospects"
+    -X POST
+    -H "Content-Type: application/json"
+    -d '{"first_name":"Jack","last_name":"Smith","email":"j.smith@example.com"}'
 ```
 ```php
 <?php
@@ -31,25 +44,88 @@ $client = new Capture\API\Client($jwt.placeholder);
 $client->authorize();
 $prospects = $client->createProspects(['first_name'=>"Jack",'last_name'=>"Smith",'email'=>"j.smith@example.com"]);
 ```
+```ruby
+require 'capture-api'
 
+api = Capture::APIClient.authorize!('jwt.placeholder')
+api.prospects.create(['first_name'=>"Jack",'last_name'=>"Smith",'email'=>"j.smith@example.com"])
+```
+>  Then sending an Update with raw data as JSON...
+
+```http
+POST /prospects HTTP/1.1
+User-Agent: MyClient/1.0.0
+Accept: application/vnd.capture-api.1+json
+Host: api.capturehighered.net
+Authorization: JWT "jwt.placeholder"
+Content-Length: 30
+id=321&address_1=124+State+St.&...
+```
+```shell
+b) If sending raw data as json:
+curl "https://api.capturehighered.net/v1/prospects/321"
+    -X PUT
+    -H "Content-Type: application/json"
+    -d '{"address_1":"124 State St.",...}'
+```
+```php
+<?php
+$client = new Capture\API\Client($jwt.placeholder);
+$client->authorize();
+$prospects = $client->updateProspects(321, ['address_1'=>"124 State St.",...]);
+```
+```ruby
+require 'capture-api'
+
+api = Capture::APIClient.authorize!('jwt.placeholder')
+api.prospects.update(321, ['address_1'=>"124 State St.",...])
+```
+>The Update and Create endpoints will both return JSON similar to the following,
+with the exception that the url, result, and message will vary accordingly.
+
+```json
+{
+  "object": "prospect",
+  "url": "/v1/prospects/:id",
+  "result": "prospect updated",
+  "message": "(Rows matched: 1  Changed: 1  Warnings: 0",
+  "data": [
+    {
+      "id": 321,
+      "pool_id": null,
+      "campaign_id": null,
+      "campaign_list_id": null,
+      "source_id": 0,
+      "client_prospect_id": null,
+      "prospect_status_id": 1,
+      "prospect_disposition_id": null,
+      "first_name": "Jack",
+      "last_name": "Smith",
+      "mi": null,
+      "email": "j.smith@example.com",
+      "home_phone": null,
+      "cell_phone": null,
+      "can_text": 0,
+      "address_1": "124 State St.",
+      "...":"..."
+    }
+  ]
+}
+```
 The Capture Prospect API is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support cross-origin resource sharing, allowing you to interact securely with our API from a client-side web application (though you should never expose your secret API key in any public website's client-side code).
 
 JSON is returned by all API responses, including errors, although our API libraries convert responses to appropriate language-specific objects.
+> ###Full Endpoint examples below
 
 # Authentication
-
-Authenticate your account when using the API by including your secret API key in the request. You will receive your API key from us. Your client application will then submit it to https://api.capturehighered.com/authenticate and receive back a JSON Web Token(JWT). Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret JWT or Token in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your Token, because the client will get it from the authentication page and use it when calling protected end points.
-
-All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.
-
-> To authorize, use this code:
+> ### To authorize, use this code:
 
 ```shell
 # With the shell, you can just pass the correct header with each request
 curl "https://api.capturehighered.com/v1/authenticate"
     -X POST
     -H "Cache-Control: no-cache"
-    -d 'email=example@email.com&password=example_pw'
+    -d 'email=example@email.com&password=password'
 ```
 ```php
 <?php
@@ -67,7 +143,7 @@ Accept: application/vnd.capture-api.1+json
 Content-Type: application/x-www-form-urlencoded
 Host: api.capturehighered.net
 Content-Length: 30
-email=example@email.com&password=example_pw
+email=example@email.com&password=password
 ```
 > Example call after receiving your JWT
 
@@ -94,7 +170,11 @@ require 'capture-api'
 api = Capture::APIClient.authorize!('jwt.placeholder')
 api.prospects.get
 ```
-> Make sure to replace `jwt.placeholder` with your Token.
+> ####Make sure to replace `jwt.placeholder` with your Token.
+
+Authenticate your account when using the API by including your secret API key in the request. You will receive your API key from us. Your client application will then submit it to https://api.capturehighered.com/authenticate and receive back a JSON Web Token(JWT). Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret JWT or Token in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your Token, because the client will get it from the authentication page and use it when calling protected end points.
+
+All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.
 
 Capture API expects for the JWT to be included in all API requests to the server in a header that looks like the following:
 
@@ -106,10 +186,6 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 
 # Prospects
 ## Get All Prospects
-Default returns only the Prospect IDs for all prospects, or a subgroup of prospects.
-
-The auto-pagination feature is specific to Capture's libraries and cannot be used directly with curl.
-
 ```http
 GET /prospects HTTP/1.1
 User-Agent: MyClient/1.0.0
@@ -155,6 +231,10 @@ api.prospects.get
   ]
 }
 ```
+Default returns only the Prospect IDs for all prospects, or a subgroup of prospects.
+
+The auto-pagination feature is specific to Capture's libraries and cannot be used directly with curl.
+
 ### Returns
 
 This endpoint retrieves all prospects.
@@ -319,7 +399,7 @@ b) If sending raw data as json:
 curl "https://api.capturehighered.net/v1/prospects"
     -X POST
     -H "Content-Type: application/json"
-    -d '{'first_name':"Jack",'last_name':"Smith",'email':"j.smith@example.com"}'
+    -d '{"first_name":"Jack","last_name":"Smith","email":"j.smith@example.com"}'
 ```
 ```php
 <?php
