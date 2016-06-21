@@ -224,13 +224,13 @@ with the exception that the url, result, and message will vary accordingly.</p>
 <h1 id="authentication">Authentication</h1>
 
 <blockquote>
-<p>To authorize, use this code:</p>
+<h3 id="to-authorize-use-this-code">To authorize, use this code:</h3>
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With the shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://api.capturehighered.com/v1/authenticate"</span>
     -X POST
     -H <span class="s2">"Cache-Control: no-cache"</span>
-    -d <span class="s1">'email=example@email.com&amp;password=example_pw'</span>
+    -d <span class="s1">'email=example@email.com&amp;password=password'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$jwt</span><span class="o">.</span><span class="nx">placeholder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Authenticate</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span><span class="nv">$password</span><span class="p">);</span>
@@ -245,7 +245,7 @@ curl <span class="s2">"https://api.capturehighered.com/v1/authenticate"</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.capturehighered.net</span>
 <span class="na">Content-Length</span><span class="p">:</span> <span class="s">30</span>
-<span class="s">email=example@email.com&amp;password=example_pw</span>
+<span class="s">email=example@email.com&amp;password=password</span>
 </code></pre>
 
 <blockquote>
@@ -272,7 +272,7 @@ curl <span class="s2">"https://api.capturehighered.com/v1/authenticate"</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">jwt.placeholder</code> with your Token.</p>
+<h4 id="make-sure-to-replace-jwt-placeholder-with-your-token">Make sure to replace <code class="prettyprint">jwt.placeholder</code> with your Token.</h4>
 </blockquote>
 
 <p>Authenticate your account when using the API by including your secret API key in the request. You will receive your API key from us. Your client application will then submit it to https://api.capturehighered.com/authenticate and receive back a JSON Web Token(JWT). Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret JWT or Token in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your Token, because the client will get it from the authentication page and use it when calling protected end points.</p>
@@ -290,10 +290,6 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <h1 id="prospects">Prospects</h1>
 
 <h2 id="get-all-prospects">Get All Prospects</h2>
-
-<p>Default returns only the Prospect IDs for all prospects, or a subgroup of prospects.</p>
-
-<p>The auto-pagination feature is specific to Capture&rsquo;s libraries and cannot be used directly with curl.</p>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.capture-api.1+json</span>
@@ -336,6 +332,10 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<p>Default returns only the Prospect IDs for all prospects, or a subgroup of prospects.</p>
+
+<p>The auto-pagination feature is specific to Capture&rsquo;s libraries and cannot be used directly with curl.</p>
 
 <h3 id="returns">Returns</h3>
 
