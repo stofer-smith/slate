@@ -221,10 +221,10 @@ with the exception that the url, result, and message will vary accordingly.</p>
 
 <p>JSON is returned by all API responses, including errors, although our API libraries convert responses to appropriate language-specific objects.</p>
 
-<h1 id="authentication">Authentication</h1>
-
 <blockquote>
 <p>Full Endpoint examples below</p>
+
+<h1 id="authentication">Authentication</h1>
 </blockquote>
 
 <p>Authenticate your account when using the API by including your secret API key in the request. You will receive your API key from us. Your client application will then submit it to https://api.capturehighered.com/authenticate and receive back a JSON Web Token(JWT). Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret JWT or Token in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your Token, because the client will get it from the authentication page and use it when calling protected end points.</p>
