@@ -223,10 +223,6 @@ with the exception that the url, result, and message will vary accordingly.</p>
 
 <h1 id="authentication">Authentication</h1>
 
-<p>Authenticate your account when using the API by including your secret API key in the request. You will receive your API key from us. Your client application will then submit it to https://api.capturehighered.com/authenticate and receive back a JSON Web Token(JWT). Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret JWT or Token in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your Token, because the client will get it from the authentication page and use it when calling protected end points.</p>
-
-<p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.</p>
-
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
@@ -278,6 +274,10 @@ curl <span class="s2">"https://api.capturehighered.com/v1/authenticate"</span>
 <blockquote>
 <p>Make sure to replace <code class="prettyprint">jwt.placeholder</code> with your Token.</p>
 </blockquote>
+
+<p>Authenticate your account when using the API by including your secret API key in the request. You will receive your API key from us. Your client application will then submit it to https://api.capturehighered.com/authenticate and receive back a JSON Web Token(JWT). Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret JWT or Token in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your Token, because the client will get it from the authentication page and use it when calling protected end points.</p>
+
+<p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.</p>
 
 <p>Capture API expects for the JWT to be included in all API requests to the server in a header that looks like the following:</p>
 
