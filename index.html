@@ -128,6 +128,11 @@
 </blockquote>
 <pre class="highlight plaintext"><code>https://api.capturehighered.net
 </code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">(</span><span class="nv">$jwt</span><span class="o">.</span><span class="nx">placeholder</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">authorize</span><span class="p">();</span>
+<span class="nv">$prospects</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">createProspects</span><span class="p">([</span><span class="s1">'first_name'</span><span class="o">=&gt;</span><span class="s2">"Jack"</span><span class="p">,</span><span class="s1">'last_name'</span><span class="o">=&gt;</span><span class="s2">"Smith"</span><span class="p">,</span><span class="s1">'email'</span><span class="o">=&gt;</span><span class="s2">"j.smith@example.com"</span><span class="p">]);</span>
+</code></pre>
 
 <p>The Capture Prospect API is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support cross-origin resource sharing, allowing you to interact securely with our API from a client-side web application (though you should never expose your secret API key in any public website&rsquo;s client-side code).</p>
 
@@ -447,7 +452,7 @@ curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.capturehighered.net</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">JWT "jwt.placeholder"</span>
 <span class="na">Content-Length</span><span class="p">:</span> <span class="s">30</span>
-<span class="s">first_name=Jack&amp;last_name=Smith&amp;email=j.smith@example.com&amp;...</span>
+<span class="s">first_name=Jack&amp;last_name=Smith&amp;...</span>
 </code></pre>
 
 <blockquote>
