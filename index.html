@@ -143,7 +143,7 @@
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
     -X POST
     -H <span class="s2">"Content-Type: application/json"</span>
-    -d <span class="s1">'{'</span>first_name<span class="s1">':"Jack",'</span>last_name<span class="s1">':"Smith",'</span>email<span class="s1">':"j.smith@example.com"}'</span>
+    -d <span class="s1">'{"first_name":"Jack","last_name":"Smith","email":"j.smith@example.com"}'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">(</span><span class="nv">$jwt</span><span class="o">.</span><span class="nx">placeholder</span><span class="p">);</span>
@@ -222,7 +222,7 @@ with the exception that the url, result, and message will vary accordingly.</p>
 <p>JSON is returned by all API responses, including errors, although our API libraries convert responses to appropriate language-specific objects.</p>
 
 <blockquote>
-<h2 id="full-endpoint-examples-below">Full Endpoint examples below</h2>
+<h3 id="full-endpoint-examples-below">Full Endpoint examples below</h3>
 </blockquote>
 
 <h1 id="authentication">Authentication</h1>
@@ -521,7 +521,7 @@ curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
 curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
     -X POST
     -H <span class="s2">"Content-Type: application/json"</span>
-    -d <span class="s1">'{'</span>first_name<span class="s1">':"Jack",'</span>last_name<span class="s1">':"Smith",'</span>email<span class="s1">':"j.smith@example.com"}'</span>
+    -d <span class="s1">'{"first_name":"Jack","last_name":"Smith","email":"j.smith@example.com"}'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">(</span><span class="nv">$jwt</span><span class="o">.</span><span class="nx">placeholder</span><span class="p">);</span>
