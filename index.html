@@ -129,8 +129,11 @@
 <pre class="highlight plaintext"><code>API Root Domain
 https://api.capturehighered.net
 </code></pre>
-<pre class="highlight http"><code><span class="err"># Creating a prospect with the HTTP Library...
-</span><span class="nf">POST</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+<blockquote>
+<p>Creating a prospect with the HTTP Library&hellip;</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.capture-api.1+json</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.capturehighered.net</span>
@@ -138,8 +141,11 @@ https://api.capturehighered.net
 <span class="na">Content-Length</span><span class="p">:</span> <span class="s">30</span>
 <span class="s">first_name=Jack&amp;last_name=Smith&amp;email=j.smith@example.com&amp;...</span>
 </code></pre>
-<pre class="highlight http"><code><span class="err"># Then sending an Update with raw data as json...
-</span><span class="nf">POST</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+<blockquote>
+<p>Then sending an Update with raw data as json&hellip;</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.capture-api.1+json</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.capturehighered.net</span>
@@ -147,8 +153,12 @@ https://api.capturehighered.net
 <span class="na">Content-Length</span><span class="p">:</span> <span class="s">30</span>
 <span class="s">id=[prospect_id]&amp;address_1=124+State+St.&amp;...</span>
 </code></pre>
-<pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">Update</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">Create</span><span class="w"> </span><span class="err">endpoints</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">both</span><span class="w"> </span><span class="err">return</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">JSON</span><span class="w"> </span><span class="err">except</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">message</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">vary</span><span class="w"> </span><span class="err">accordingly.</span><span class="w">
-</span><span class="p">{</span><span class="w">
+
+<blockquote>
+<p>The Update and Create endpoints will both return this JSON,
+except for the result and message will vary accordingly.</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prospect"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1/prospects/:id"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prospect updated"</span><span class="p">,</span><span class="w">
