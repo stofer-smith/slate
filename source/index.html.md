@@ -19,7 +19,10 @@ search: true
 ---
 
 # Introduction
+##Welcome!
 > ###API Endpoint --- https://api.capturehighered.net
+
+One of the missions of Capture is to make complex technologies more accessible; we are excited that you have arrived at this site to explore our Application Programming Interface (API) offering. Wether you are a current Capture partner looking to design your own custom integration or you are still evaluating our capabilities, we know you will find our API simple, powerful and flexible.
 
 > Creating a prospect with the HTTP Library...
 
@@ -50,6 +53,10 @@ require 'capture-api'
 api = Capture::APIClient.authorize!('jwt.placeholder')
 api.prospects.create(['first_name'=>"Jack",'last_name'=>"Smith",'email'=>"j.smith@example.com"])
 ```
+###Prospect Focus
+
+All the data in the Capture ecosystem is people related, so it should be no surprise that our API is mostly concerned with people and what they do.  Available methods include the ability locate, read, update, create and delete prospect information over the wire. It is very important to understand that all related data for a prospect record — a prospect’s web traffic, email statistics, dynamic content, custom fields, modeling scores and other detailed items — is accessible via this single robust system. All you need to do is locate a record using your CRM’s unique ID (as one example) and we will send back a comprehensive record for that prospect in one shot. Should you need to modify the record: simply make changes to the record you just retrieved and send it back.
+
 >  Then sending an Update with raw data as JSON...
 
 ```http
@@ -83,6 +90,16 @@ api.prospects.update(321, ['address_1'=>"124 State St.",...])
 >The Update and Create endpoints will both return JSON similar to the following,
 with the exception that the url, result, and message will vary accordingly.
 
+###Based on REST
+
+The Capture Prospect API is organized around the very common Representational State Transfer (REST) design pattern. Our API has predictable, resource-oriented URLs, and uses Hypertext Transfer Protocol (HTTP) response codes to indicate API errors. We use built-in HTTP features like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support cross-origin resource sharing, allowing you to interact securely with our API from a client-side web application (though you should never expose your secret API key in any public website’s client-side code).
+
+JavaScript Object Notation (JSON) is returned by all API responses, including errors, although our API libraries convert responses to appropriate language-specific objects.
+
+###Bring Your Own Language
+
+Since our API is based on REST, you have a tremendous amount of choice in the language and operating system upon which you will complete your integration. We presently provide examples for raw HTTP, cURL, PHP and Ruby — but we’ve yet to run into a programming language not capable of consuming a standards-based HTTP web service, and some software will support consuming our API out of the box.
+
 ```json
 {
   "object": "prospect",
@@ -112,9 +129,6 @@ with the exception that the url, result, and message will vary accordingly.
   ]
 }
 ```
-The Capture Prospect API is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support cross-origin resource sharing, allowing you to interact securely with our API from a client-side web application (though you should never expose your secret API key in any public website's client-side code).
-
-JSON is returned by all API responses, including errors, although our API libraries convert responses to appropriate language-specific objects.
 > ###Full Endpoint examples below
 
 # Authentication
