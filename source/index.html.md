@@ -227,20 +227,45 @@ api.prospects.get
 
 ```json
 {
+  "_metadata": {
+    "cursor": 5,
+    "per_page": 20,
+    "page_count": 9,
+    "total_count": 199,
+    "Links": [
+      {
+        "self": "/v1/prospects?cursor=5&per_page=20"
+      },
+      {
+        "first": "/v1/prospects?cursor=0&per_page=20"
+      },
+      {
+        "previous": "/v1/prospects?cursor=4&per_page=20"
+      },
+      {
+        "next": "/v1/prospects?cursor=6&per_page=20"
+      },
+      {
+        "last": "/v1/prospects?cursor=9&per_page=20"
+      }
+    ]
+  },
   "object": "list",
   "url": "/v1/prospects",
+  "count": 20,
   "data": [
     {
-      "id": 1
+      "id": 109
     },
     {
-      "id": 2
+      "id": 110
     },
     {
-        ...
+      "id": 111
     },
+    "...",
     {
-      "id": N
+      "id": 128
     }
   ]
 }
