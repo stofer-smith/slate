@@ -43,8 +43,8 @@ curl "https://api.capturehighered.net/v1/prospects"
 ```
 ```php
 <?php
-$client = new Capture\API\Client($jwt.placeholder);
-$client->authorize();
+$client = new Capture\API\Client();
+$client->authorize($email,$password);
 $prospects = $client->createProspects(['first_name'=>"Jack",'last_name'=>"Smith",'email'=>"j.smith@example.com"]);
 ```
 ```ruby
@@ -77,8 +77,8 @@ curl "https://api.capturehighered.net/v1/prospects/321"
 ```
 ```php
 <?php
-$client = new Capture\API\Client($jwt.placeholder);
-$client->authorize();
+$client = new Capture\API\Client();
+$client->authorize($email,$password);
 $prospects = $client->updateProspects(321, ['address_1'=>"124 State St.",...]);
 ```
 ```ruby
@@ -174,8 +174,8 @@ curl "https://api.capturehighered.net/v1/prospects"
 ```
 ```php
 <?php
-$client = new Capture\API\Client($jwt.placeholder);
-$client->authorize();
+$client = new Capture\API\Client();
+$client->authorize($email,$password);
 $prospects = $client->getProspects();
 ```
 ```ruby
@@ -213,8 +213,8 @@ curl "https://api.capturehighered.net/v1/prospects"
 ```
 ```php
 <?php
-$client = new Capture\API\Client($jwt.placeholder);
-$client->authorize();
+$client = new Capture\API\Client();
+$client->authorize($email,$password);
 $prospects = $client->getProspects();
 ```
 ```ruby
@@ -307,8 +307,8 @@ curl "https://api.capturehighered.net/v1/prospects/321"
 ```
 ```php
 <?php
-$client = new Capture\API\Client($jwt.placeholder);
-$client->authorize();
+$client = new Capture\API\Client();
+$client->authorize($email,$password);
 $prospects = $client->getProspects(321);
 ```
 ```ruby
@@ -442,8 +442,8 @@ curl "https://api.capturehighered.net/v1/prospects"
 ```
 ```php
 <?php
-$client = new Capture\API\Client($jwt.placeholder);
-$client->authorize();
+$client = new Capture\API\Client();
+$client->authorize($email,$password);
 $prospects = $client->createProspects(['first_name'=>"Jack",'last_name'=>"Smith",'email'=>"j.smith@example.com"]);
 ```
 ```ruby
@@ -595,8 +595,8 @@ curl "https://api.capturehighered.net/v1/prospects/[prospect_id]"
 ```
 ```php
 <?php
-$client = new Capture\API\Client($jwt.placeholder);
-$client->authorize();
+$client = new Capture\API\Client();
+$client->authorize($email,$password);
 $prospects = $client->updateProspects($prospect_id, ['address_1'=>"124 State St.",...]);
 ```
 ```ruby
@@ -737,8 +737,8 @@ curl "https://api.capturehighered.net/v1/prospects/31221"
 ```
 ```php
 <?php
-$client = new Capture\API\Client($jwt.placeholder);
-$client->authorize();
+$client = new Capture\API\Client();
+$client->authorize($email,$password);
 $result = $client->deleteProspect(31221);
 ```
 ```ruby
@@ -782,3 +782,120 @@ Unlike other objects, deleted prospects can still be retrieved through the API, 
 Parameter | Description
 --------- | -----------
 prospect_id | The ID of the prospect to retrieve
+
+
+## Get All Prospects Scores
+```http
+GET /prospects/scores HTTP/1.1
+User-Agent: MyClient/1.0.0
+Accept: application/vnd.capture-api.1+json
+Host: api.capturehighered.net
+Authorization: JWT "jwt.placeholder"
+```
+```shell
+curl "https://api.capturehighered.net/v1/prospects/scores"
+    -H "Authorization: JWT jwt.placeholder"
+```
+```php
+<?php
+$client = new Capture\API\Client();
+$client->authorize($email,$password);
+$prospects = $client->getProspectsScores();
+```
+```ruby
+require 'capture-api'
+
+api = Capture::APIClient.authorize!('jwt.placeholder')
+api.prospects.getScores
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "_metadata": {
+    "cursor": 1,
+    "per_page": 100,
+    "page_count": 41,
+    "total_count": 4195,
+    "Links": [
+      {
+        "self": "/v1/prospects/scores?cursor=1&per_page=100"
+      },
+      {
+        "first": "/v1/prospects/scores?cursor=0&per_page=100"
+      },
+      {
+        "previous": "/v1/prospects/scores?cursor=0&per_page=100"
+      },
+      {
+        "next": "/v1/prospects/scores?cursor=2&per_page=100"
+      },
+      {
+        "last": "/v1/prospects/scores?cursor=41&per_page=100"
+      }
+    ]
+  },
+  "object": "list",
+  "url": "/v1/prospects/scores",
+  "count": 100,
+  "data": [
+    {
+      "id": null,
+      "pool_id": 4408233,
+      "campaign_id": 4,
+      "campaign_list_id": 21,
+      "source_id": 2,
+      "client_prospect_id": "69754165",
+      "prospect_status_id": 1,
+      "prospect_disposition_id": null,
+      "first_name": "Cleopatra",
+      "last_name": "Bell",
+      "mi": "",
+      "email": "cleooopatraaa@gmail.com",
+      "home_phone": null,
+      "cell_phone": null,
+      "can_text": 0,
+      "address_1": "3684 Ferncliff Rd",
+      "address_2": "",
+      "city": "Snellville",
+      "state": 11,
+      "zip": "30039",
+      "addr_verified": 0,
+      "cai": 16,
+      "cai_pct_rank": 0,
+      "cai_date": "2016-06-24T00:00:00.000Z",
+      "match_date": null,
+      "first_visit": null,
+      "ces": 44,
+      "ces_raw": 52,
+      "opens_7": null,
+      "clicks_7": null,
+      "visits_7": null,
+      "pages_7": null,
+      "app_page_7": null,
+      "visit_page_7": null,
+      "duration_7": 261,
+      "device_7": 1
+    },
+    {
+      ...
+    }
+  ]
+}    
+```
+
+The auto-pagination feature is specific to Capture's libraries and cannot be used directly with curl.
+
+### Returns
+
+This endpoint retrieves all prospects CAI, CES, and Envision Scores.
+
+### HTTP Request
+
+`GET http://api.capturehighered.net/v1/prospects/scores`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+crm_unique_id | Id of prospect in your crm | If set the result will return the score for a specific prospect.
