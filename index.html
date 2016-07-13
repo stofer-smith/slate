@@ -407,7 +407,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 </tr>
 </tbody></table>
 
-<h2 id="get-a-specific-prospect">Get a Specific Prospect</h2>
+<h2 id="get-a-specific-prospect-by-id">Get a Specific Prospect (By ID)</h2>
 
 <p>Retrieves the details of an existing prospect. You need only supply the unique prospect identifier that was returned upon prospect creation.</p>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -509,6 +509,111 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <tr>
 <td>prospect_id</td>
 <td>The ID of the prospect to retrieve</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-prospect-by-client-id">Get a Specific Prospect (By Client ID)</h2>
+
+<p>Retrieves the details of an existing prospect by Client ID. You need only supply the unique client prospect identifier that was returned upon prospect creation. This returns a similar json object as getting a specific prospect by id.</p>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/prospects/client</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/vnd.capture-api.1+json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.capturehighered.net</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">JWT "jwt.placeholder"</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">30</span>
+<span class="s">id=5</span>
+</code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects/client/5"</span>
+    -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">();</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">authorize</span><span class="p">(</span><span class="nv">$email</span><span class="p">,</span><span class="nv">$password</span><span class="p">);</span>
+<span class="nv">$prospects</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getProspects</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'capture-api'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Capture</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'jwt.placeholder'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">prospects</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prospect"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1/prospects/client/:client_prospect_id"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">321</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"campaign_list_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"client_prospect_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"prospect_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jones"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mi"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"home_phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"cell_phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Old Street"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Louisville"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40204"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"dob"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ethnicity_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"major_1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"major_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"major_3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"grad_year"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"gpa"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sat_score"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"act_score"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"score_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"score_ceiling"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"grade_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"grade_ceiling"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"award"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"parent_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"parent_last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"parent_first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"nfa"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"retargeted"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"withdrawn"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"cancelled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"wl_admit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"emails_sent"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"emails_opened"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"emails_clicked"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="returns">returns</h3>
+
+<p>This endpoint returns a specific prospect, or an error if the prospect is not found.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.capturehighered.net/v1/prospects//client/[client_prospect_id]</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_prospect_id</td>
+<td>The Client(CRM) ID of the prospect to retrieve</td>
 </tr>
 </tbody></table>
 
