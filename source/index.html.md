@@ -38,7 +38,7 @@ first_name=Jack&last_name=Smith&email=j.smith@example.com&...
 ```shell
 curl "https://api.capturehighered.net/v1/prospects"
     -X POST
-    -H "Content-Type: application/json"
+    -H "Authorization: JWT jwt.placeholder"
     -d '{"first_name":"Jack","last_name":"Smith","email":"j.smith@example.com"}'
 ```
 ```php
@@ -72,7 +72,7 @@ id=321&address_1=124+State+St.&...
 b) If sending raw data as json:
 curl "https://api.capturehighered.net/v1/prospects/321"
     -X PUT
-    -H "Content-Type: application/json"
+    -H "Authorization: JWT jwt.placeholder"
     -d '{"address_1":"124 State St.",...}'
 ```
 ```php
@@ -170,7 +170,7 @@ Authorization: JWT "jwt.placeholder"
 ```
 ```shell
 curl "https://api.capturehighered.net/v1/prospects"
-    -H "Authorization: bearer jwt.placeholder"
+    -H "Authorization: JWT jwt.placeholder"
 ```
 ```php
 <?php
@@ -286,10 +286,10 @@ This endpoint retrieves all prospects.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_prospects | true | If set to false, the result will not include prospect information.
+include_prospects | false | If set to true, the result will include prospect information.
 available | true | If set to false, the result will include prospects that have already been enrolled.
 
-## Get a Specific Prospect
+## Get a Specific Prospect (By ID)
 Retrieves the details of an existing prospect. You need only supply the unique prospect identifier that was returned upon prospect creation.
 
 ```http
@@ -303,7 +303,7 @@ id=321
 ```
 ```shell
 curl "https://api.capturehighered.net/v1/prospects/321"
-    -H "Authorization: bearer jwt.placeholder"
+    -H "Authorization: JWT jwt.placeholder"
 ```
 ```php
 <?php
@@ -389,6 +389,208 @@ Parameter | Description
 --------- | -----------
 prospect_id | The ID of the prospect to retrieve
 
+## Get a Specific Prospect (By Client ID)
+Retrieves the details of an existing prospect by Client ID. You need only supply the unique client prospect identifier from your CRM. This returns a similar json object as getting a specific prospect by id.
+
+```http
+GET /prospects/client HTTP/1.1
+User-Agent: MyClient/1.0.0
+Accept: application/vnd.capture-api.1+json
+Host: api.capturehighered.net
+Authorization: JWT "jwt.placeholder"
+Content-Length: 30
+id=5
+```
+```shell
+curl "https://api.capturehighered.net/v1/prospects/client/5"
+    -H "Authorization: JWT jwt.placeholder"
+```
+```php
+<?php
+$client = new Capture\API\Client();
+$client->authorize($email,$password);
+$prospects = $client->getProspects(5, true);
+```
+```ruby
+require 'capture-api'
+
+api = Capture::APIClient.authorize!('jwt.placeholder')
+api.prospects.get(5, true)
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "object": "prospect",
+  "url": "/v1/prospects/client/:client_prospect_id",
+  "count": 1,
+  "data": [
+    {
+        "id": 321,
+        "campaign_id": null,
+        "campaign_list_id": 1,
+        "source_id": 0,
+        "client_prospect_id": "5",
+        "prospect_status_id": 1,
+        "first_name": "Joe",
+        "last_name": "Jones",
+        "mi": null,
+        "email": "email@example.com",
+        "home_phone": null,
+        "cell_phone": null,
+        "address_1": "123 Old Street",
+        "address_2": null,
+        "city": "Louisville",
+        "state": 18,
+        "zip": "40204",
+        "gender": null,
+        "dob": null,
+        "ethnicity_id": null,
+        "major_1": null,
+        "major_2": null,
+        "major_3": null,
+        "grad_year": null,
+        "gpa": null,
+        "sat_score": null,
+        "act_score": null,
+        "score_floor": null,
+        "score_ceiling": null,
+        "grade_floor": null,
+        "grade_ceiling": null,
+        "award": null,
+        "country": null,
+        "parent_email": null,
+        "parent_last_name": null,
+        "parent_first_name": null,
+        "nfa": 0,
+        "retargeted": 0,
+        "withdrawn": 0,
+        "cancelled": 0,
+        "wl_admit": 0,
+        "emails_sent": 0,
+        "emails_opened": 0,
+        "emails_clicked": 0
+    }
+  ]
+}
+```
+### returns
+
+This endpoint returns a specific prospect, or an error if the prospect is not found.
+
+### HTTP Request
+
+`GET https://api.capturehighered.net/v1/prospects/client/[client_prospect_id]`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+client_prospect_id | The Client(CRM) ID of the prospect to retrieve (required)
+
+## Get a Specific Prospect (By Name)
+Retrieves the details of an existing prospect by First and Last Name. You need only supply the first and last name of a prospect. This returns a similar json object as getting a specific prospect by id.
+
+Note: This endpoint may return a list of prospects with matching first and last names
+
+```http
+GET /prospects/[first_name]/[last_name] HTTP/1.1
+User-Agent: MyClient/1.0.0
+Accept: application/vnd.capture-api.1+json
+Host: api.capturehighered.net
+Authorization: JWT "jwt.placeholder"
+Content-Length: 30
+```
+```shell
+curl "https://api.capturehighered.net/v1/prospects/[first_name]/[last_name]"
+    -H "Authorization: JWT jwt.placeholder"
+```
+```php
+<?php
+$client = new Capture\API\Client();
+$client->authorize($email,$password);
+$prospects = $client->getProspectByName($first_name, $last_name);
+```
+```ruby
+require 'capture-api'
+
+api = Capture::APIClient.authorize!('jwt.placeholder')
+api.prospects.getByName(first_name, last_name)
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "object": "prospect",
+  "url": "/v1/prospects/client/:client_prospect_id",
+  "count": 1,
+  "data": [
+    {
+        "id": 321,
+        "campaign_id": null,
+        "campaign_list_id": 1,
+        "source_id": 0,
+        "client_prospect_id": "5",
+        "prospect_status_id": 1,
+        "first_name": "Joe",
+        "last_name": "Jones",
+        "mi": null,
+        "email": "email@example.com",
+        "home_phone": null,
+        "cell_phone": null,
+        "address_1": "123 Old Street",
+        "address_2": null,
+        "city": "Louisville",
+        "state": 18,
+        "zip": "40204",
+        "gender": null,
+        "dob": null,
+        "ethnicity_id": null,
+        "major_1": null,
+        "major_2": null,
+        "major_3": null,
+        "grad_year": null,
+        "gpa": null,
+        "sat_score": null,
+        "act_score": null,
+        "score_floor": null,
+        "score_ceiling": null,
+        "grade_floor": null,
+        "grade_ceiling": null,
+        "award": null,
+        "country": null,
+        "parent_email": null,
+        "parent_last_name": null,
+        "parent_first_name": null,
+        "nfa": 0,
+        "retargeted": 0,
+        "withdrawn": 0,
+        "cancelled": 0,
+        "wl_admit": 0,
+        "emails_sent": 0,
+        "emails_opened": 0,
+        "emails_clicked": 0
+    }
+  ]
+}
+```
+### returns
+
+This endpoint returns a specific prospect, or an error if the prospect is not found.
+
+### HTTP Request
+
+`GET https://api.capturehighered.net/v1/prospects/[first_name]/[last_name]`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+first_name | The first name of the prospect to retrieve (required)
+last_name | The last name of the prospect to retrieve (required)
+
 ## Create a New Prospect
 
 Creates a new prospect object.
@@ -399,7 +601,7 @@ a) If sending form data:
 curl "https://api.capturehighered.net/v1/prospects"
     -X POST
     -H "Content-Type: multipart/form-data;"
-    -H "Authorization: Bearer jwt.placeholder"
+    -H "Authorization: JWT jwt.placeholder"
     -F "first_name=Jack"
     -F "last_name=Smith"
     -F "email=j.smith@example.com"
@@ -517,7 +719,7 @@ a) If sending form data:
 curl "https://api.capturehighered.net/v1/prospects/[prospect_id]"
     -X PUT
     -H "Content-Type: multipart/form-data;"
-    -H "Authorization: Bearer jwt.placeholder"
+    -H "Authorization: JWT jwt.placeholder"
     -F "address_1='124 State St.'"
     -F "..."
 ```
@@ -631,7 +833,7 @@ Permanently deletes a prospect.
 ```shell
 curl "https://api.capturehighered.net/v1/prospects/31221"
     -X DELETE
-    -H "Authorization: bearer jwt.placeholder"
+    -H "Authorization: JWT jwt.placeholder"
 ```
 ```php
 <?php
