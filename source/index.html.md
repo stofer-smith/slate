@@ -276,7 +276,7 @@ The auto-pagination feature is specific to Capture's libraries and cannot be use
 
 ### Returns
 
-This endpoint retrieves all prospects.
+This endpoint retrieves all prospect ids, paginated with cursor, page count, and total counts included.
 
 ### HTTP Request
 

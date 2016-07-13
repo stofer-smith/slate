@@ -10,8 +10,8 @@ Our API libraries raise exceptions for many reasons, such as a failed creation, 
 
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
+400 | Bad Request -- The request was invalid.
+401 | Unauthorized -- Your API key is incorrect
 402 | Request Failed -- The parameters were valid but the request failed.
 403 | Forbidden -- The prospect requested is hidden for administrators only
 404 | Not Found -- The specified prospect could not be found
