@@ -132,7 +132,7 @@
 <p>One of the missions of Capture is to make complex technologies more accessible; we are excited that you have arrived at this site to explore our Application Programming Interface (API) offering. Wether you are a current Capture partner looking to design your own custom integration or you are still evaluating our capabilities, we know you will find our API simple, powerful and flexible.</p>
 
 <blockquote>
-<p>Creating a prospect with the HTTP Library&hellip;</p>
+<p>Creating a prospect with the HTTP, a PHP Library, or your language of preference&hellip;</p>
 </blockquote>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/prospects</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">User-Agent</span><span class="p">:</span> <span class="s">MyClient/1.0.0</span>
@@ -291,7 +291,7 @@ curl <span class="s2">"https://api.capturehighered.com/v1/authenticate"</span>
 <h4 id="make-sure-to-replace-jwt-placeholder-with-your-token">Make sure to replace <code class="prettyprint">jwt.placeholder</code> with your Token.</h4>
 </blockquote>
 
-<p>Authenticate your account when using the API by including your secret API key in the request. You will receive your API key from us. Your client application will then submit it to https://api.capturehighered.com/authenticate and receive back a JSON Web Token(JWT). Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret JWT or Token in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your Token, because the client will get it from the authentication page and use it when calling protected end points.</p>
+<p>Authenticate your account when using the API by including your secret JSON Web Token(JWT) in the request. You will receive your JWT from us. Your client application will initially submit your username/email and password to https://api.capturehighered.com/authenticate and receive back a JWT. Your JWT carries many privileges, so be sure to keep them secret! Do not share your secret JWT or Token in publicly accessible areas such GitHub, client-side code, and so forth. For the most part only your API client will know your Token, because the client will get it from the authentication page and use it when calling protected end points.</p>
 
 <p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.</p>
 
