@@ -144,7 +144,7 @@
 </code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
     -X POST
-    -H <span class="s2">"Content-Type: application/json"</span>
+    -H <span class="s2">"Authorization: JWT jwt.placeholder"</span>
     -d <span class="s1">'{"first_name":"Jack","last_name":"Smith","email":"j.smith@example.com"}'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
@@ -176,7 +176,7 @@
 <pre class="highlight shell"><code>b<span class="o">)</span> If sending raw data as json:
 curl <span class="s2">"https://api.capturehighered.net/v1/prospects/321"</span>
     -X PUT
-    -H <span class="s2">"Content-Type: application/json"</span>
+    -H <span class="s2">"Authorization: JWT jwt.placeholder"</span>
     -d <span class="s1">'{"address_1":"124 State St.",...}'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
@@ -274,7 +274,7 @@ curl <span class="s2">"https://api.capturehighered.com/v1/authenticate"</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">JWT "jwt.placeholder"</span>
 </code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
-    -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
+    -H <span class="s2">"Authorization: JWT jwt.placeholder"</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">();</span>
@@ -419,7 +419,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <span class="s">id=321</span>
 </code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects/321"</span>
-    -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
+    -H <span class="s2">"Authorization: JWT jwt.placeholder"</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">();</span>
@@ -524,7 +524,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <span class="s">id=5</span>
 </code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects/client/5"</span>
-    -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
+    -H <span class="s2">"Authorization: JWT jwt.placeholder"</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">();</span>
@@ -630,7 +630,7 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <span class="na">Content-Length</span><span class="p">:</span> <span class="s">30</span>
 </code></pre>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects/[first_name]/[last_name]"</span>
-    -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
+    -H <span class="s2">"Authorization: JWT jwt.placeholder"</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">();</span>
@@ -735,7 +735,7 @@ a<span class="o">)</span> If sending form data:
 curl <span class="s2">"https://api.capturehighered.net/v1/prospects"</span>
     -X POST
     -H <span class="s2">"Content-Type: multipart/form-data;"</span>
-    -H <span class="s2">"Authorization: Bearer jwt.placeholder"</span>
+    -H <span class="s2">"Authorization: JWT jwt.placeholder"</span>
     -F <span class="s2">"first_name=Jack"</span>
     -F <span class="s2">"last_name=Smith"</span>
     -F <span class="s2">"email=j.smith@example.com"</span>
@@ -865,7 +865,7 @@ a<span class="o">)</span> If sending form data:
 curl <span class="s2">"https://api.capturehighered.net/v1/prospects/[prospect_id]"</span>
     -X PUT
     -H <span class="s2">"Content-Type: multipart/form-data;"</span>
-    -H <span class="s2">"Authorization: Bearer jwt.placeholder"</span>
+    -H <span class="s2">"Authorization: JWT jwt.placeholder"</span>
     -F <span class="s2">"address_1='124 State St.'"</span>
     -F <span class="s2">"..."</span>
 </code></pre>
@@ -987,7 +987,7 @@ curl <span class="s2">"https://api.capturehighered.net/v1/prospects/[prospect_id
 <p>Permanently deletes a prospect.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.capturehighered.net/v1/prospects/31221"</span>
     -X DELETE
-    -H <span class="s2">"Authorization: bearer jwt.placeholder"</span>
+    -H <span class="s2">"Authorization: JWT jwt.placeholder"</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Capture\API\Client</span><span class="p">();</span>
