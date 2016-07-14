@@ -288,6 +288,13 @@ Parameter | Default | Description
 --------- | ------- | -----------
 include_prospects | false | If set to true, the result will include prospect information.
 available | true | If set to false, the result will include prospects that have already been enrolled.
+filter  | null | prospect field to winnow prospects on
+conditional | null | Conditional value such as greater than, less than, or equal to
+value | null | value to winnow filter with
+
+<aside class="notice">
+Note: Filter, conditional, and value work together to provide subsets of prospects. If all three (filter, conditional, and value) are not set all three will be ignored.
+</aside>
 
 ## Get a Specific Prospect (By ID)
 Retrieves the details of an existing prospect. You need only supply the unique prospect identifier that was returned upon prospect creation.
