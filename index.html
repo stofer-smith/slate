@@ -405,7 +405,26 @@ You must replace <code>jwt.placeholder</code> with your personal API key. Howeve
 <td>true</td>
 <td>If set to false, the result will include prospects that have already been enrolled.</td>
 </tr>
+<tr>
+<td>filter</td>
+<td>null</td>
+<td>prospect field to winnow prospects on</td>
+</tr>
+<tr>
+<td>conditional</td>
+<td>null</td>
+<td>Conditional value such as greater than, less than, or equal to</td>
+</tr>
+<tr>
+<td>value</td>
+<td>null</td>
+<td>value to winnow filter with</td>
+</tr>
 </tbody></table>
+
+<aside class="notice">
+Note: Filter, conditional, and value work together to provide subsets of prospects. If all three (filter, conditional, and value) are not set all three will be ignored.
+</aside>
 
 <h2 id="get-a-specific-prospect-by-id">Get a Specific Prospect (By ID)</h2>
 
