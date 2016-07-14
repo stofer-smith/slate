@@ -234,19 +234,24 @@ api.prospects.get
     "total_count": 199,
     "Links": [
       {
-        "self": "/v1/prospects?cursor=5&per_page=20"
+        "self": "/v1/prospects?cursor=5&per_page=20",
+        "self_cursor": 5
       },
       {
-        "first": "/v1/prospects?cursor=0&per_page=20"
+        "first": "/v1/prospects?cursor=0&per_page=20",
+        "first_cursor": 0
       },
       {
-        "previous": "/v1/prospects?cursor=4&per_page=20"
+        "previous": "/v1/prospects?cursor=4&per_page=20",
+        "previous_cursor": 4
       },
       {
-        "next": "/v1/prospects?cursor=6&per_page=20"
+        "next": "/v1/prospects?cursor=6&per_page=20",
+        "next_cursor": 6
       },
       {
-        "last": "/v1/prospects?cursor=9&per_page=20"
+        "last": "/v1/prospects?cursor=9&per_page=20",
+        "last_cursor": 9
       }
     ]
   },
