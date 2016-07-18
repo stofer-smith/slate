@@ -27,9 +27,8 @@ One of the missions of Capture is to make complex technologies more accessible; 
 > Creating a prospect with the HTTP, a PHP Library, or your language of preference...
 
 ```http
-POST /prospects HTTP/1.1
+POST /v1/prospects HTTP/1.1
 User-Agent: MyClient/1.0.0
-Accept: application/vnd.capture-api.1+json
 Host: api.capturehighered.net
 Authorization: JWT "jwt.placeholder"
 Content-Length: 30
@@ -60,9 +59,8 @@ All the data in the Capture ecosystem is people related, so it should be no surp
 >  Then sending an Update with raw data as JSON...
 
 ```http
-POST /prospects HTTP/1.1
+POST /v1/prospects HTTP/1.1
 User-Agent: MyClient/1.0.0
-Accept: application/vnd.capture-api.1+json
 Host: api.capturehighered.net
 Authorization: JWT "jwt.placeholder"
 Content-Length: 30
@@ -153,7 +151,6 @@ jwt.placeholder = Capture::APIClient.authenticate!(username,password)
 ```http
 POST /authenticate HTTP/1.1
 User-Agent: MyClient/1.0.0
-Accept: application/vnd.capture-api.1+json
 Content-Type: application/x-www-form-urlencoded
 Host: api.capturehighered.net
 Content-Length: 30
@@ -162,9 +159,8 @@ email=example@email.com&password=password
 > Example call after receiving your JWT
 
 ```http
-GET /prospects HTTP/1.1
+GET /v1/prospects HTTP/1.1
 User-Agent: MyClient/1.0.0
-Accept: application/vnd.capture-api.1+json
 Host: api.capturehighered.net
 Authorization: JWT "jwt.placeholder"
 ```
@@ -194,16 +190,15 @@ Capture API expects for the JWT to be included in all API requests to the server
 
 `Authorization: JWT jwt.placeholder`
 
-<aside class="warning">
+<aside class="notice">
 You must replace <code>jwt.placeholder</code> with your personal API key. However, this will mainly be handled by the API client code.
 </aside>
 
 # Prospects
 ## Get All Prospects
 ```http
-GET /prospects HTTP/1.1
+GET /v1/prospects HTTP/1.1
 User-Agent: MyClient/1.0.0
-Accept: application/vnd.capture-api.1+json
 Host: api.capturehighered.net
 Authorization: JWT "jwt.placeholder"
 ```
@@ -305,9 +300,8 @@ Note: Filter, conditional, and value work together to provide subsets of prospec
 Retrieves the details of an existing prospect. You need only supply the unique prospect identifier that was returned upon prospect creation.
 
 ```http
-GET /prospects HTTP/1.1
+GET /v1/prospects HTTP/1.1
 User-Agent: MyClient/1.0.0
-Accept: application/vnd.capture-api.1+json
 Host: api.capturehighered.net
 Authorization: JWT "jwt.placeholder"
 Content-Length: 30
@@ -401,13 +395,12 @@ Parameter | Description
 --------- | -----------
 prospect_id | The ID of the prospect to retrieve
 
-## Get a Specific Prospect (By Client ID)
+## Get a Specific Prospect (By CRM Unique ID or Client ID)
 Retrieves the details of an existing prospect by Client ID. You need only supply the unique client prospect identifier from your CRM. This returns a similar json object as getting a specific prospect by id.
 
 ```http
-GET /prospects/client HTTP/1.1
+GET /v1/prospects/client HTTP/1.1
 User-Agent: MyClient/1.0.0
-Accept: application/vnd.capture-api.1+json
 Host: api.capturehighered.net
 Authorization: JWT "jwt.placeholder"
 Content-Length: 30
@@ -507,9 +500,8 @@ Retrieves the details of an existing prospect by First and Last Name. You need o
 Note: This endpoint may return a list of prospects with matching first and last names
 
 ```http
-GET /prospects/[first_name]/[last_name] HTTP/1.1
+GET /v1/prospects/[first_name]/[last_name] HTTP/1.1
 User-Agent: MyClient/1.0.0
-Accept: application/vnd.capture-api.1+json
 Host: api.capturehighered.net
 Authorization: JWT "jwt.placeholder"
 Content-Length: 30
@@ -638,9 +630,8 @@ api = Capture::APIClient.authorize!('jwt.placeholder')
 api.prospects.create(['first_name'=>"Jack",'last_name'=>"Smith",'email'=>"j.smith@example.com"])
 ```
 ```http
-POST /prospects HTTP/1.1
+POST /v1/prospects HTTP/1.1
 User-Agent: MyClient/1.0.0
-Accept: application/vnd.capture-api.1+json
 Host: api.capturehighered.net
 Authorization: JWT "jwt.placeholder"
 Content-Length: 30
@@ -755,9 +746,8 @@ api = Capture::APIClient.authorize!('jwt.placeholder')
 api.prospects.update(prospect_id, ['address_1'=>"124 State St.",...])
 ```
 ```http
-POST /prospects HTTP/1.1
+POST /v1/prospects HTTP/1.1
 User-Agent: MyClient/1.0.0
-Accept: application/vnd.capture-api.1+json
 Host: api.capturehighered.net
 Authorization: JWT "jwt.placeholder"
 Content-Length: 30
@@ -770,7 +760,8 @@ id=[prospect_id]&address_1=124+State+St.&...
 {
   "object": "prospect",
   "url": "/v1/prospects/:id",
-  "count": 1,
+  "result": "prospect updated",
+  "message": "Rows matched: 1  Changed: 1  Warnings: 0",
   "data": [
     {
         "id": 15,
@@ -898,9 +889,8 @@ prospect_id | The ID of the prospect to retrieve
 
 ## Get All Prospects Scores
 ```http
-GET /prospects/scores HTTP/1.1
+GET /v1/prospects/scores HTTP/1.1
 User-Agent: MyClient/1.0.0
-Accept: application/vnd.capture-api.1+json
 Host: api.capturehighered.net
 Authorization: JWT "jwt.placeholder"
 ```
